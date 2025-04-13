@@ -1,28 +1,11 @@
-import emailjs from '@emailjs/browser';
 import { Resend } from 'resend';
 
-
-export const runtime = 'edge';
+export const runtime = 'edge'; // ✅ Serverless environment safe
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   const { name, email, message } = await req.json();
-
-  const EMAIL_JS_PUB_KEY = process.env.EMAIL_JS_PUB_KEY;
-  const EMAIL_JS_SERVICE_ID = process.env.EMAIL_JS_SERVICE_ID;
-  const EMAIL_JS_TEMPLATE_ID = process.env.EMAIL_JS_TEMPLATE_ID;
-  await emailjs.send(
-    EMAIL_JS_SERVICE_ID,
-    EMAIL_JS_TEMPLATE_ID,
-    {
-        from_name: name,
-        from_email: email,
-        message: message,
-    },
-    EMAIL_JS_PUB_KEY
-  );
-
 
   const html = `
     <div style="font-family: sans-serif; padding: 20px;">
@@ -40,14 +23,18 @@ export async function POST(req: Request) {
 
   try {
     const data = await resend.emails.send({
-      from: process.env.EMAIL_FROM!,
-      to: process.env.EMAIL_TO!,
+      from: process.env.RESEND_EMAIL_FROM!,
+      to: process.env.RESEND_EMAIL_TO!,
       subject: `New contact from ${name}`,
-      html
+      html,
     });
 
     return Response.json({ success: true, data });
-  } catch (error) {
-    return Response.json({ success: false, error }, { status: 500 });
+  } catch (error: any) {
+    console.error("Resend Error:", error?.response?.data || error.message);
+    return Response.json(
+      { success: false, error: "Resend failed: " + (error?.message || 'Unknown error') },
+      { status: 500 }
+    );
   }
 }

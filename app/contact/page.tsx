@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import EndpointHeader from '../components/EndpointHeader';
 import ResponseBox from '../components/ResponseBox';
-
-
+import emailjs from '@emailjs/browser';
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -15,17 +14,32 @@ export default function ContactPage() {
 
   const [response, setResponse] = useState<any>(null);
 
-  const handleChange = (field: string, value: string) => {
-    setForm({ ...form, [field]: value });
-  };
-
   const handleSubmit = async () => {
-    console.log("Here");
     try {
+      const apiRes = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      console.log(apiRes);
 
+      if (!apiRes.ok) throw new Error('Failed to contact server.');
 
-    } catch (error) {
-      setResponse({ status: '500 Error', data: error });
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID!,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+        },
+        process.env.NEXT_PUBLIC_EMAIL_JS_PUB_KEY!
+      );
+
+      setResponse({ status: '200 OK', data: form });
+    } catch (error: any) {
+      console.error(error);
+      setResponse({ status: '500 Error', data: error.message });
     }
   };
 
