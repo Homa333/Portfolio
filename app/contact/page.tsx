@@ -5,25 +5,36 @@ import EndpointHeader from '../components/EndpointHeader';
 import ResponseBox from '../components/ResponseBox';
 import emailjs from '@emailjs/browser';
 
+type ContactForm = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+type ApiResponse = {
+  status: string;
+  data: Record<string, unknown> | string;
+};
+
 export default function ContactPage() {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<ContactForm>({
     name: '',
     email: '',
     message: '',
   });
 
-  const [response, setResponse] = useState<any>(null);
+  const [response, setResponse] = useState<ApiResponse | null>(null);
 
   const handleSubmit = async () => {
     try {
+      // 1. Send to server (Resend)
       const apiRes = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-      console.log(apiRes);
 
-      if (!apiRes.ok) throw new Error('Failed to contact server.');
+      if (!apiRes.ok) throw new Error('Failed to contact server');
 
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID!,
@@ -37,9 +48,14 @@ export default function ContactPage() {
       );
 
       setResponse({ status: '200 OK', data: form });
-    } catch (error: any) {
-      console.error(error);
-      setResponse({ status: '500 Error', data: error.message });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setResponse({ status: '500 Error', data: error.message });
+        console.error('Email error:', error.message);
+      } else {
+        setResponse({ status: '500 Error', data: 'Unknown error' });
+        console.error('Unknown error');
+      }
     }
   };
 
@@ -52,7 +68,9 @@ export default function ContactPage() {
         onChange={(e) => {
           try {
             setForm(JSON.parse(e.target.value));
-          } catch {}
+          } catch {
+            console.error('Invalid JSON');
+          }
         }}
       />
       <button

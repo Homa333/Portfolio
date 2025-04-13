@@ -1,18 +1,17 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-export default function ResponseBox({
-  status,
-  data,
-}: {
+type ResponseBoxProps = {
   status: string;
-  data: any;
-}) {
+  data: Record<string, unknown> | string | unknown[];
+};
+
+export default function ResponseBox({ status, data }: ResponseBoxProps) {
   return (
     <div className="mt-4">
       <p className="font-medium mb-2">{status}</p>
       <SyntaxHighlighter language="json" style={vscDarkPlus}>
-        {JSON.stringify(data, null, 2)}
+        {typeof data === 'string' ? data : JSON.stringify(data, null, 2)}
       </SyntaxHighlighter>
     </div>
   );

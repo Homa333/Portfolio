@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 
-export const runtime = 'edge'; // ✅ Serverless environment safe
+export const runtime = 'edge';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -30,10 +30,17 @@ export async function POST(req: Request) {
     });
 
     return Response.json({ success: true, data });
-  } catch (error: any) {
-    console.error("Resend Error:", error?.response?.data || error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Resend Error:", error.message);
+      return Response.json(
+        { success: false, error: "Resend failed: " + error.message },
+        { status: 500 }
+      );
+    }
+
     return Response.json(
-      { success: false, error: "Resend failed: " + (error?.message || 'Unknown error') },
+      { success: false, error: "Resend failed: Unknown error" },
       { status: 500 }
     );
   }
