@@ -16,7 +16,11 @@ export default function Sidebar() {
 
   return (
     <aside className="w-64 h-screen bg-[#1e1e1e] text-white sticky top-0 flex flex-col p-6 border-r border-gray-800">
-      <h1 className="text-xl font-bold mb-8 tracking-tight">/api/portfolio</h1>
+
+    <div className="p-4 border-b">
+      <Link href="/">Kshitiz&apos;s Portfolio</Link>
+    </div>
+      
       <nav className="flex flex-col gap-3">
         {routes.map((route) => (
           <Link
