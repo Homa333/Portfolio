@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Footer from './components/Footer';
 
 
 export default function Home() {
@@ -7,10 +8,10 @@ export default function Home() {
 
       <Image
         src="/profile.jpg"
-        alt="Padante"
+        alt="profile"
         width={160}
         height={160}
-        className="rounded-full border-4 border-blue-600 shadow mb-6 object-cover"
+        className="aspect-square w-40 h-40 rounded-full object-cover border-4 border-blue-600 shadow mb-6"      
       />
       <h1 className="text-4xl md:text-5xl font-bold mb-4">
         🧑‍💻 Welcome to Kshitiz&apos;s Portfolio
@@ -33,6 +34,7 @@ export default function Home() {
           <li><span className="text-blue-600">POST</span> /contact</li>
         </ul>
       </div>
+      <Footer/>
   </div>
   );
 }

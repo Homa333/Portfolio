@@ -4,6 +4,7 @@ import { useState } from 'react';
 import EndpointHeader from '../components/EndpointHeader';
 import ResponseBox from '../components/ResponseBox';
 import emailjs from '@emailjs/browser';
+import Footer from '../components/Footer';
 
 type ContactForm = {
   name: string;
@@ -129,6 +130,7 @@ export default function ContactPage() {
       </button>
 
       {response && <ResponseBox status={response.status} data={response.data} />}
+    <Footer />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -19,7 +20,9 @@ export default function RootLayout({
       >
         <div className="flex min-h-screen">
           <Sidebar />
-          <main className="flex-1 p-6 overflow-auto">{children}</main>
+          <main className="flex-1 flex flex-col p-4 md:p-6">
+          {children}
+        </main>
         </div>
       </body>
     </html>
