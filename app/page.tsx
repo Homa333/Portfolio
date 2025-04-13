@@ -1,11 +1,16 @@
+import Image from 'next/image';
+
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center p-8">
 
-      <img
+      <Image
         src="/profile.jpg"
         alt="Padante"
-        className="w-40 h-40 rounded-full border-4 border-blue-600 shadow mb-6 object-cover transition-transform duration-300 hover:scale-105"
+        width={160}
+        height={160}
+        className="rounded-full border-4 border-blue-600 shadow mb-6 object-cover"
       />
       <h1 className="text-4xl md:text-5xl font-bold mb-4">
         🧑‍💻 Welcome to Kshitiz's Portfolio
