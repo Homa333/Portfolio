@@ -13,7 +13,7 @@ export default function Home() {
         className="rounded-full border-4 border-blue-600 shadow mb-6 object-cover"
       />
       <h1 className="text-4xl md:text-5xl font-bold mb-4">
-        🧑‍💻 Welcome to Kshitiz's Portfolio
+        🧑‍💻 Welcome to Kshitiz&apos;s Portfolio
       </h1>
       <p className="text-lg md:text-xl text-gray-600 max-w-2xl mb-8">
         Explore my software engineering portfolio. Click on the endpoints in the sidebar to learn more about my experience, projects, and skills.
