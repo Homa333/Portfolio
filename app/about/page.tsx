@@ -9,7 +9,7 @@ export default function AboutPage() {
       <ResponseBox
         status="200 OK"
         data={{about}}
-      />
+      />    
     </>
   );
 }

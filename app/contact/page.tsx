@@ -24,10 +24,26 @@ export default function ContactPage() {
   });
 
   const [response, setResponse] = useState<ApiResponse | null>(null);
+  const [isSending, setIsSending] = useState(false);
+  const [isValid, setIsValid] = useState(true);
+
+  const validateJSON = (value: string) => {
+    try {
+      const parsed = JSON.parse(value);
+      const hasRequiredFields =
+        parsed.name && parsed.email && parsed.message;
+
+      setForm(parsed);
+      setIsValid(hasRequiredFields);
+    } catch {
+      setIsValid(false);
+    }
+  };
 
   const handleSubmit = async () => {
+    setIsSending(true);
+
     try {
-      // 1. Send to server (Resend)
       const apiRes = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,34 +67,67 @@ export default function ContactPage() {
     } catch (error: unknown) {
       if (error instanceof Error) {
         setResponse({ status: '500 Error', data: error.message });
-        console.error('Email error:', error.message);
       } else {
         setResponse({ status: '500 Error', data: 'Unknown error' });
-        console.error('Unknown error');
       }
+    } finally {
+      setIsSending(false);
     }
   };
 
   return (
     <>
       <EndpointHeader method="POST" path="/contact" description="Send me a message via email." />
+
       <textarea
         className="w-full bg-black text-white p-4 font-mono h-48 rounded"
         value={JSON.stringify(form, null, 2)}
-        onChange={(e) => {
-          try {
-            setForm(JSON.parse(e.target.value));
-          } catch {
-            console.error('Invalid JSON');
-          }
-        }}
+        onChange={(e) => validateJSON(e.target.value)}
       />
+
+      {!isValid && (
+        <p className="text-red-500 text-sm mt-2">
+          ❌ Invalid JSON or missing `name`, `email`, or `message` fields.
+        </p>
+      )}
+
       <button
-        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+        disabled={!isValid || isSending}
+        className={`mt-4 px-5 py-2.5 rounded-full text-white font-medium transition ${
+          !isValid || isSending
+            ? 'bg-gray-500 cursor-not-allowed'
+            : 'bg-blue-600 hover:bg-blue-700'
+        }`}
         onClick={handleSubmit}
       >
-        Send Request
+        {isSending ? (
+          <span className="flex items-center justify-center gap-2">
+            <svg
+              className="w-4 h-4 animate-spin"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8z"
+              />
+            </svg>
+            Sending...
+          </span>
+        ) : (
+          'Send Request'
+        )}
       </button>
+
       {response && <ResponseBox status={response.status} data={response.data} />}
     </>
   );
