@@ -8,7 +8,7 @@ export const profile = {
     email: "kshitizbhurtel@gmail.com",
     github: "https://github.com/Homa333",
     linkedin: "https://www.linkedin.com/in/kshitiz-bhurtel-1a37051ab/",
-    // website: "https://yourdomain.com",
+    website: "https://kbhurtel.com",
     resumeUrl: "/resume.pdf",
   },
   highlights: [
