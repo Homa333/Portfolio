@@ -24,7 +24,7 @@ export default function App(){
               <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">{profile.summary}</p>
             </Section>
             <Section id="experience" title="Experience">
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-4 md:grid-cols-1">
                 {profile.experience.map((role, i) => (<ExperienceCard key={i} role={role as any} />))}
               </div>
             </Section>

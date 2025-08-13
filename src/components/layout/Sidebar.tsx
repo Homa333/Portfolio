@@ -23,10 +23,10 @@ export default function Sidebar({ open, setOpen }:{ open:boolean; setOpen:(v:boo
           className="mx-auto mb-3 h-24 w-24 rounded-full object-cover border-2 border-zinc-200 dark:border-zinc-700"
         />
         <h1 className="text-2xl font-bold tracking-tight">{profile.name}</h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">{profile.tagline}</p>
         <div className="mt-2 flex flex-wrap gap-2 text-xs text-zinc-500 dark:text-zinc-400">
           <MapPin size={14} /> {profile.location}
         </div>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">{profile.tagline}</p>
         <div className="mt-4 flex gap-2">
           {profile.links.github && (
             <a className="rounded-xl border p-2 text-sm hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900" href={profile.links.github}>
