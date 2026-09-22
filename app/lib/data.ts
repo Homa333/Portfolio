@@ -3,14 +3,30 @@ export const about = {
   title: "Software Engineer II",
   location: "Bangalore, India",
   summary:
-    "Experienced Software Engineer with over 3 years in full-stack development. Skilled in React, Spring Boot, and Django, with a strong focus on system performance optimization, data security, and scalable architecture. Proven track record in leading teams and delivering results through practical, data-driven solutions."
+    "Experienced Software Engineer with more than 4 years in Full-stack development, specializing in Backend development. Skilled in Spring Boot, Django and React, with a strong focus on system performance optimization, data security, and scalable architecture. Proven track record in leading teams and delivering results through practical, data-driven solutions."
 };
 
 export const experiences = [
   {
+    company: "Youth Innovation Lab",
+    title: "Software Engineer II",
+    duration: "Aug 2026 – Present",
+    roles: [
+      {
+        title: "Backend Developer - Consultant",
+        achievements: [
+          "Developed RiskAI, an LLM-powered risk assessment application for analyzing and evaluating disaster-related risks.",
+          "Integrated Model Context Protocol (MCP) tools with LLM-based agents, enabling specialized agents such as HeatAI and FloodAI to analyze historical and upcoming disaster events.",
+          "Designed agent-based workflows to combine LLM reasoning with external tools and data sources, improving the application's ability to generate context-aware risk insights.",
+          "Implemented role-based access control (RBAC) in the Shikshya application, introducing role-specific permissions to control access to platform features and resources.",
+        ]
+      }
+    ]
+  },
+  {
     company: "Deloitte",
     title: "Software Engineer II",
-    duration: "Mar 2022 – Present",
+    duration: "Mar 2022 – May 2026",
     roles: [
       {
         title: "Backend Lead – Cybersecurity Benchmarking",
@@ -49,7 +65,7 @@ export const projects = [
   {
     title: "BitPostage",
     role: "Full Stack Developer (Contract)",
-    duration: "Oct 2023 – Present",
+    duration: "Oct 2023 – Aug 2026",
     description:
       "A crypto-powered platform to purchase postage labels from USPS, UPS, and FedEx.",
     tech: ["React", "FastAPI", "AWS"],
@@ -89,5 +105,5 @@ export const interests = [
 export const socials = {
   email: "kshitizbhurtel@gmail.com",
   github: "https://github.com/Homa333",
-  linkedin: "https://www.linkedin.com/in/kshitiz-bhurtel-1a37051ab/",
+  linkedin: "https://www.linkedin.com/in/kshitiz-bhurtel-383667417/",
 };
