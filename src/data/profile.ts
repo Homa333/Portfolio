@@ -7,7 +7,7 @@ export const profile = {
   links: {
     email: "kshitizbhurtel@gmail.com",
     github: "https://github.com/Homa333",
-    linkedin: "https://www.linkedin.com/in/kshitiz-bhurtel-1a37051ab/",
+    linkedin: "https://www.linkedin.com/in/kshitiz-bhurtel-383667417/",
     resumeUrl: "/resume.pdf",
     website: "https://kbhurtel.com"
   },
@@ -25,10 +25,21 @@ export const profile = {
     tools: ["Jenkins", "OpenCV", "WebSockets", "Carla Simulation", "Autoware", "Git", "Microservices"]
   },
   experience: [
+        {
+      title: "Backend Developer (Consultant)",
+      company: "Youth Innovation Lab",
+      timeframe: "Aug 2026 – Present",
+      bullets: [
+          "Developed RiskAI, an LLM-powered risk assessment application for analyzing and evaluating disaster-related risks.",
+          "Integrated Model Context Protocol (MCP) tools with LLM-based agents, enabling specialized agents such as HeatAI and FloodAI to analyze historical and upcoming disaster events.",
+          "Designed agent-based workflows to combine LLM reasoning with external tools and data sources, improving the application's ability to generate context-aware risk insights.",
+          "Implemented role-based access control (RBAC) in the Shikshya application, introducing role-specific permissions to control access to platform features and resources.",
+        ]
+    },
     {
       title: "Full-Stack Developer (Contract)",
       company: "BitPostage",
-      timeframe: "Oct 2023 – Present",
+      timeframe: "Oct 2023 – Aug 2026",
       bullets: [
         "Developed a crypto-powered postage purchasing platform for USPS, UPS, and FedEx",
         "React frontend + FastAPI backend on AWS with 99.9% uptime",
