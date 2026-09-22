@@ -2,8 +2,8 @@ export const profile = {
   name: "Kshitiz Bhurtel",
   tagline: "Software Engineer • Backend • Computer Vision • Full-Stack Development",
   summary:
-    "Experienced Software Engineer with over 3+ years of expertise in full-stack development. Skilled in React, Django, and Spring Boot, with a focus on optimizing system performance and enhancing data security. Proven ability to lead teams, develop scalable applications, and implement practical solutions to improve efficiency and reduce operational costs. Experienced with AWS, Jenkins, and OpenCV for real-time data processing. Focused on delivering impactful results through data-driven development and practical technology solutions.",
-  location: "Nepal",
+    "Experienced Software Engineer with more than 4 years in Full-stack development, specializing in Backend development. Skilled in Spring Boot, Django and React, with a strong focus on system performance optimization, data security, and scalable architecture. Proven track record in leading teams and delivering results through practical, data-driven solutions.",
+  location: "Kathmandu, Nepal",
   links: {
     email: "kshitizbhurtel@gmail.com",
     github: "https://github.com/Homa333",
